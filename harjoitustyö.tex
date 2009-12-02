@@ -1,0 +1,92 @@
+% rubber: module pdftex
+% rubber: path tktl
+% rubber: bibtex.stylepath tktl
+% rubber: bibtex.path .
+
+\documentclass{tktltiki}
+\usepackage[pdftex]{graphicx}
+\usepackage{subfigure}
+\usepackage{url}
+\begin{document}
+\onehalfspacing
+
+\title{Apache Struts Action -ohjelmistokehys}
+\author{Juho Naalisvaara}
+\date{\today}
+
+\maketitle
+
+\numberofpagesinformation{\numberofpages\ sivua + \numberofappendixpages\ liitesivua}
+%\classification{\protect{\ \\
+%  D.1.1 [Programming Techniques]: Applicative (Functional) Programming, \\
+%  K.2 [History of Computing]: Software
+%}}
+
+\keywords{ohjelmistokehys, ohjelmistoarkkitehtuuri, Apache Struts Action}
+
+\begin{abstract}
+
+\end{abstract}
+
+\mytableofcontents
+
+\section{Apache Struts Action -ohjelmistokehyksen perusidea}
+\subsection{Kehyksestä johdettavien sovellusten komponenteille määrittelemä roolijako}
+
+\section{Apache Struts Action -ohjelmistokehyksen yleisarkkiehtuuri ja variaatiopisteet}
+blah
+\subsection{Toimintojen esittely Action-luokan aliluokkina}
+blah
+\subsection{Lomaketarkistusten määrittely ActionForm-luokkaa erikoistamalla}
+blah
+\subsection{Tietosisällön määrittely JavaBean-olioina}
+blah
+\subsection{Käyttöliittymänäkymien määrittely JavaServerPages-tiedostoina}
+blah
+\subsection{Sovelluksen konfigurointi struts-config.xml-tiedostolla}
+blah
+%% Esimerkkisovelluksena strutsin lähdekoodidistribuution mukanan tuleva MailReader-ohjelma
+%Kehyksen ja siitä johdettavan tyypillisen sovelluksen keskeiset luokat ja muut käsitteet
+%esitetään luokkakaaviona. Kaavioon merkitään stereotyypeillä, mitkä osat arkkitehtuurista
+%kuuluvat kehyksen puolelle ja mitkä osat puolestaan ovat sovelluskohtaisia. Myös
+%MailReader-ohjelman käyttöliittymäosuus (JSP-tiedostot) ja sovelluksen konfigurointi (struts-
+%config.xml-tiedosto WEB-INF-hakemistossa) kuvataan pääpiirteissään luokkakaaviossa.
+%Mukaan kannattaa kuitenkin ottaa vain keskeisimmät JSP- ja XML-tiedostojen tagit
+%esimerkinomaisesti esimerkiksi stereotyypitettyinä luokkasymboleina. Vastaavasti kaavioon
+%kannattaa ottaa mukaan ainoastaan sovelluksen tekijän kannalta kiinnostavat kehyksen luokat
+%ja esimerkkisovelluksen luokista yksi tai muutama edustaja kutakin (ali)luokkaryhmää kohti.
+%Luokkakaavion lisäksi laaditaan sekvenssikaavio, joka havainnollistaa MailReader-ohjelman
+%toimintaa käyttäjän sisäänkirjautumisen yhteydessä (logon.jsp, LogonAction, LogonForm,
+%DynaValidatorForm ja niin edelleen). Kumpaankin kaavioon liitetään myös lyhyt sanallinen
+%selostus.
+
+
+
+\section{Apache Struts Action -kehyksellä toteutetun sovelluksen (MailReader) arkkitehtuurin arviointi}
+%% arviointi soveltamalla ATAM-menetelmän analyysiosiota
+\subsection{Laatuatribuutit}
+%Saatavuus
+%Luotettavuus
+%Muunneltavuus
+%Uudelleenkäytettävyys
+%Suorituskyky
+%% NÄISTÄ Valitaan yksi, joka jaetaan tarpeen mukaan alikohtiin ja sijoitetaan laatupuuhun
+%% Valittuun laatunäkökohtaan liittyen laaditaan vähintään kuusi MailReader-ohjelman skenaariota,
+%% jotka painotetaan tärkeyden ha toteutuksen vaikeuden suhteen
+
+%% Lopuksi listatatan laatupuun ja skenaarioiden perusteellaa tyypillisien Struts-sovelluksen  
+%% MailReader) kyseiseen laatuattribuuttiin liittyvät keskeiset riskit.
+
+
+ 
+\newpage
+
+%%\nocite{*}
+%%\bibliographystyle{tktl}
+%\bibliography{lahteet}
+
+\lastpage
+
+\pagestyle{empty}
+
+\end{document}
