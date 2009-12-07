@@ -25,13 +25,37 @@
 \keywords{ohjelmistokehys, ohjelmistoarkkitehtuuri, Apache Struts Action}
 
 \begin{abstract}
-
+Apache Struts Action-ohjelmistokehys ja sen arkkitehtuurin perusidea. Kehyksen siitä johdettaville komponenteille määräämä roolijako. Malli, näkymä ja ohjain.
 \end{abstract}
 
 \mytableofcontents
 
-\section{Apache Struts Action -ohjelmistokehyksen perusidea}
+
+%1.OSA=========================================================================
+\section{Apache Struts Action -ohjelmistokehys}
+Apache Struts Action on Java-ohjelmointikielellä kehitettävien www-sovellusten kehittämiseen tarkoitettu ohjelmistokehys. Struts Action on Apache-säätiön hallinnoima avoimen lähdekoodin projekti. Struts Action-ohjelmistokehys tarjoaa työkaluja ja valmiita ratkaisuja helpottamaan web-sovellusten kehittämisen ongelmakohtia, kuten lomakkeiden validointia ja kontrollin siirtelyä liiketoimintalogiikan ja käyttöliittymän välillä.
+
+\subsection{Ohjelmistokehyksessä sovellettavan arkkitehtuurin perusidea}
+Struts Action-ohjelmistokehys soveltaa model-view-controller-arkkitehtuuria. Ohjelmistokehyksen tavoitteena on selkeästi eristää liiketoimintalogiikka (model) käyttöliittymästä (view) ja niiden välillä informaatiota ja kontrollia siirtelevästä ohjaimesta (controller). 
+
+Strutsin ytimessä on ActionServlet-niminen servletti, joka ohjaa käyttäjien lähettämät pyynnöt oikeille ohjainkomponenteille (Action classes). Jokaiseen ohjainkomponenttiin liittyy tietyt sivut, jotka voidaan näyttää ohjainkomponentin suorituksen tuloksena. Ohjainkomponentin suorituksen päätyttyä se palauttaa kontrollin ja tilatiedon (esim. success, failure, ready, ok) ActionServlet-servletille joka näyttää tilaa vastaavan näkymän. Malli toteutetaan yleensä JavaBeans-olioina, joita ohjainkomponentti kutsuu.
+
 \subsection{Kehyksestä johdettavien sovellusten komponenteille määrittelemä roolijako}
+\subsubsection{Näkymä}
+Struts-pohjaisen sovelluksen näkymä toteutetaan yleensä JavaServer Pages (JSP) tekniikalla. JSP-sivut voivat sisältää staattista HTML- tai XML-merkkausta, ja Struts Action-tunnisteita, joiden sisällön ohjelmistokehys muodostaa dynaamisesti suoritusaikana. 
+
+\subsubsection{Ohjain}
+%% http://struts.apache.org/1.3.10/userGuide/introduction.html
+%% kohta 1.2.3 The Controller: ActionServlet and ActionMapping
+%http://en.wikipedia.org/wiki/Apache_Struts
+%http://struts.apache.org/1.3.10/faqs/works.html
+
+\subsubsection{Malli}
+
+
+
+%==============================================================================
+
 
 \section{Apache Struts Action -ohjelmistokehyksen yleisarkkiehtuuri ja variaatiopisteet}
 blah
