@@ -10,7 +10,7 @@
 \begin{document}
 \onehalfspacing
 
-\title{Apache Struts Action -ohjelmistokehys}
+\title{Apache Struts Action 1.3.10 -ohjelmistokehys}
 \author{Juho Naalisvaara}
 \date{\today}
 
@@ -25,50 +25,55 @@
 \keywords{ohjelmistokehys, ohjelmistoarkkitehtuuri, Apache Struts Action}
 
 \begin{abstract}
-Apache Struts Action-ohjelmistokehys ja sen arkkitehtuurin perusidea. Kehyksen siitä johdettaville komponenteille määräämä roolijako. Malli, näkymä ja ohjain.
+Apache Struts Action-ohjelmistokehys ja sen arkkitehtuurin perusidea. Kehyksen siitä johdettaville komponenteille määräämä roolijako. Malli, näkymä ja ohjain. Struts Action -ohjelmistokehyksen yleisarkkitehtuuri ja keskeisimmät variaatiopisteet. Struts Action -kehyksen avulla toteutetun sovelluksen arkkitehtuurin arviointi.
 \end{abstract}
 
 \mytableofcontents
 
-
+%==============================================================================
 %1.OSA=========================================================================
+%==============================================================================
 \section{Apache Struts Action -ohjelmistokehys}
 Apache Struts Action on Java-ohjelmointikielellä kehitettävien www-sovellusten kehittämiseen tarkoitettu ohjelmistokehys. Struts Action on Apache-säätiön hallinnoima avoimen lähdekoodin projekti. Struts Action-ohjelmistokehys tarjoaa työkaluja ja valmiita ratkaisuja helpottamaan web-sovellusten kehittämisen ongelmakohtia, kuten lomakkeiden validointia ja kontrollin siirtelyä liiketoimintalogiikan ja käyttöliittymän välillä.
 
 \subsection{Ohjelmistokehyksessä sovellettavan arkkitehtuurin perusidea}
 Struts Action-ohjelmistokehys soveltaa model-view-controller-arkkitehtuuria. Ohjelmistokehyksen tavoitteena on selkeästi eristää liiketoimintalogiikka (model) käyttöliittymästä (view) ja niiden välillä informaatiota ja kontrollia siirtelevästä ohjaimesta (controller). 
 
-Strutsin ytimessä on ActionServlet-niminen servletti, joka ohjaa käyttäjien lähettämät pyynnöt oikeille ohjainkomponenteille (Action classes). Jokaiseen ohjainkomponenttiin liittyy tietyt sivut, jotka voidaan näyttää ohjainkomponentin suorituksen tuloksena. Ohjainkomponentin suorituksen päätyttyä se palauttaa kontrollin ja tilatiedon (esim. success, failure, ready, ok) ActionServlet-servletille joka näyttää tilaa vastaavan näkymän. Malli toteutetaan yleensä JavaBeans-olioina, joita ohjainkomponentti kutsuu.
+Strutsin ytimessä on ActionServlet-niminen servletti, joka ohjaa käyttäjien lähettämät pyynnöt oikeille \textit{ohjainkomponenteille} (\texttt{Action} classes). Jokaiseen ohjainkomponenttiin liittyy\textit{näkymäkomponentteja} (yleensä JSP-sivu), jotka voidaan näyttää ohjainkomponentin suorituksen tuloksena. Ohjainkomponentin suorituksen päätyttyä se palauttaa kontrollin ja tilatiedon (esim. success, failure, ready, ok) \texttt{ActionServlet}-servletille joka näyttää tilaa vastaavan sivun. Malli toteutetaan yleensä JavaBean-olioina, joita ohjainkomponentti kutsuu. Ohjainkomponentti voidaan myös toteuttaa JavaBean-oliona.
+
+Kehitettäessa Action Struts-kehykseen perustuva sovellus kehittäjät siis määrittelevät sovelluksen käyttöliittymän JSP-tiedostoina, liiketoimintalogiikan (yleensä) JavaBean-luokkina ja ohjaimeen liittyvät ohjainkomponentit \texttt{Action}-luokan aliluokkina. 
 
 \subsection{Kehyksestä johdettavien sovellusten komponenteille määrittelemä roolijako}
-\subsubsection{Näkymä}
-Struts-pohjaisen sovelluksen näkymä toteutetaan yleensä JavaServer Pages (JSP) tekniikalla. JSP-sivut voivat sisältää staattista HTML- tai XML-merkkausta, ja Struts Action-tunnisteita, joiden sisällön ohjelmistokehys muodostaa dynaamisesti suoritusaikana. 
-
-\subsubsection{Ohjain}
-%% http://struts.apache.org/1.3.10/userGuide/introduction.html
-%% kohta 1.2.3 The Controller: ActionServlet and ActionMapping
-%http://en.wikipedia.org/wiki/Apache_Struts
-%http://struts.apache.org/1.3.10/faqs/works.html
 
 \subsubsection{Malli}
+MVC-perustaisen järjestelmän malli-osio, eli liiketoimintalogiikka, voidaan jakaa kahteen osaan, järjestelmän sisäiseen tilaan ja toimintoihin jotka muuttavat tätä tilaa. Apache Struts-ohjelmistokehys jättää kehittäjien päätettäväksi miten toteuttaa järjestelmän liiketoimintalogiikka. Pienissä sovelluksissa se voidaan toteuttaa ohjainkomponenttien sisällä, mutta on suositeltavaa eriyttää liiketoimintalogiikka ohjaimesta. Useimmiten malli-osio toteutetaan JavaBean-luokkina, jolloin papujen atribuutit muodostavat järjestelmän tilan. Riippuen sovelluksesta, pavut voivat myös käyttää jotain toista komponenttia järjestelmän tilan muodostamiseen, kuten tietokantaa, tai hakukonetta.
 
+\subsubsection{Näkymä}
+Struts-pohjaisen sovelluksen näkymä toteutetaan yleensä JavaServer Pages (JSP) tekniikalla. JSP-sivut voivat sisältää staattista HTML- tai XML-merkkausta, ja Struts Action-tunnisteita, joiden sisällön ohjelmistokehys muodostaa dynaamisesti suoritusaikana. Struts Action -ohjelmistokehys sisältää tunnistekirjaston (tag library), joka helpottaa monikielisten käyttöliittymien luomista ja mahdollistaa yhteistyön \texttt{ActionForm}-papujen kanssa. \texttt{ActionForm}-papujen avulla voidaan validoida lomakkeita tai mitä tahansa sovelluksen saamaa syötettä.
 
+\subsubsection{Ohjain}
+Struts Action-kehykseen kuuluva MVC-arkkitehtuurin mukainen ohjain, \texttt{ActionServlet}-luokka, ottaa vastaan käyttäjien pyyntöjä (tyypillisesti Http-pyyntöjä), ja päättää mikä liiketoimintalogiikan mukainen toiminto pitää suorittaa, ja lopuksi ohjaa kontrollin liiketoimintalogiikan suorituksen perusteella oikealla näkymä-komponentille. \texttt{ActionServlet} konfiguroidaan joukolla määritelmiä (\texttt{ActionMappings}). Yksittäinen määritelmä sisältää polun, jota verrtaan sisääntulevaan palvelupyyntöön, ja polkua vastaavan ohjainkomponentin nimen. Kun ohjain saa palvelupyynnön se valitsee määritelmien joukosta sen joka vastaa palvelupyynnön URI:a, ja suorittaa siihen liitetyn ohjainkomponentin. Kaikki ohjainkomponentit ovat luokan \\ \texttt{[org.apache.struts.action.Action]} aliluokkia. Ohjainkomponentit sisältävät kutsuja liiketoimintalogiikkakomponenteille, tulkitsevat niiden suorituksen tuloksen, ja lopulta ohjaavat kontrollin oikealle näkymäkomponenttille.
 
+\subsection{Kontrollin siirtyminen kehyksessä}
+Sovelluksen käynnistyessä ohjain (\texttt{ActionServlet})parsii konfiguraatiotiedoston \\ (\texttt{struts-config.xml}), ja käyttää sitä muiden ohjaintason olioiden luomiseen. Konfiguraatiotiedosto määrittelee (muun muassa) joukon \texttt{ActionMappings}-sääntöjä, jotka sitovat sovellukselle tulevat palvelupyyntöjen polut (URI) ja niitä vastaavat ohjainkomponentit. Ohjain konsultoi \texttt{ActionMappings}-määrittelyjä kun se ohjaa HTTP-palvelupyyntöjä oikeille ohjainkomponenteille (\texttt{Action}-luokan aliluokkia) tai JSP-sivuille. Usein pyyntö ohjataan ensin ohjainkomponentille ja seuraavaksi JSP-sivulle. Ohjainkomponentti voi siirtää kontrollin toiselle ohjainkomponentille, kutsua JavaBean-oliota liiketoimintalogiikan suorittamiseksi, tai palauttaa kontrollin jollekkin näkymäkomponentille (JSP-sivu). 
+
+Kun ohjainkomponentti siirtää kontrollin toiselle ohjainkomponentille, se voi siirtää myös tilatietoa asettamalla tilaa edustavan JavaBean-olion johonkin jaettuun kontekstiin, kuten istuntoon. 
+
+Papuja voidaan myös käyttää lomakkeiden tarkastamiseen. \texttt{ActionForm}-luokan aliluokilla voidaan helposti tallentaa ja tarkistaa näkymäkomponentit lomakkeen syötteet. Action Strutsin tunnistekirjaston avulla voidaan myös automaattisesti populoida lomakkeen kentät JavaBean-oliosta.
 %==============================================================================
 
+%==============================================================================
+%2.OSA=========================================================================
+%==============================================================================
+\newpage
+\section{Struts Action -ohjelmistokehyksen yleisarkkitehtuuri ja variaatiopisteet}
+%%%%%%%%\subsection{Toimintojen esittely Action-luokan aliluokkina}
+%%%%%%%%\subsection{Lomaketarkistusten määrittely ActionForm-luokkaa erikoistamalla}
+%%%%%%%%\subsection{Tietosisällön määrittely JavaBean-olioina}
+%%%%%%%%\subsection{Käyttöliittymänäkymien määrittely JavaServerPages-tiedostoina}
+%%%%%%%%\subsection{Sovelluksen konfigurointi struts-config.xml-tiedostolla}
+%==============================================================================
 
-\section{Apache Struts Action -ohjelmistokehyksen yleisarkkiehtuuri ja variaatiopisteet}
-blah
-\subsection{Toimintojen esittely Action-luokan aliluokkina}
-blah
-\subsection{Lomaketarkistusten määrittely ActionForm-luokkaa erikoistamalla}
-blah
-\subsection{Tietosisällön määrittely JavaBean-olioina}
-blah
-\subsection{Käyttöliittymänäkymien määrittely JavaServerPages-tiedostoina}
-blah
-\subsection{Sovelluksen konfigurointi struts-config.xml-tiedostolla}
-blah
 %% Esimerkkisovelluksena strutsin lähdekoodidistribuution mukanan tuleva MailReader-ohjelma
 %Kehyksen ja siitä johdettavan tyypillisen sovelluksen keskeiset luokat ja muut käsitteet
 %esitetään luokkakaaviona. Kaavioon merkitään stereotyypeillä, mitkä osat arkkitehtuurista
@@ -85,10 +90,10 @@ blah
 %selostus.
 
 
-
-\section{Apache Struts Action -kehyksellä toteutetun sovelluksen (MailReader) arkkitehtuurin arviointi}
+%3.Struts Action-kehyksen avulla toteutetun sovelluksen arviointi=========================================
+%%%%%%%%\section{Apache Struts Action -kehyksellä toteutetun sovelluksen (MailReader) arkkitehtuurin arviointi}
 %% arviointi soveltamalla ATAM-menetelmän analyysiosiota
-\subsection{Laatuatribuutit}
+%%%%%%%\subsection{Laatuatribuutit}
 %Saatavuus
 %Luotettavuus
 %Muunneltavuus
@@ -101,13 +106,13 @@ blah
 %% Lopuksi listatatan laatupuun ja skenaarioiden perusteellaa tyypillisien Struts-sovelluksen  
 %% MailReader) kyseiseen laatuattribuuttiin liittyvät keskeiset riskit.
 
+%% http://struts.apache.org/1.3.10/userGuide/introduction.html
+%% kohta 1.2.3 The Controller: ActionServlet and ActionMapping
+%http://en.wikipedia.org/wiki/Apache_Struts
+%http://struts.apache.org/1.3.10/faqs/works.html
 
  
 \newpage
-
-%%\nocite{*}
-%%\bibliographystyle{tktl}
-%\bibliography{lahteet}
 
 \lastpage
 
