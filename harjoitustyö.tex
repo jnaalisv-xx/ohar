@@ -86,51 +86,41 @@ Struts Action -sovelluskehyksestä johdettu sovellus konfiguroidaan \texttt{WEB-I
 
 Sovellus konfiguroidaan kirjoittamalla joukko \texttt{ActionMappings}-sääntöjä. \texttt{ActionMappings}-sääntö liittää palvelupyynnön polun, esimerkiksi \texttt{/LogonSubmit}, siihen liittyvään näyttökomponenttiin, palvelupyynnön tuloksen näyttävään sivuun ja mahdolliseen lomaketarkistukseen tai toimintoon. Esimerkkitapauksessa sisäänkirjautumiseen liittyvä näyttökomponentti voisi olla \texttt{/pages/Logon.jsp},  sisäänkirjautumisen ollessa menestyksellinen palvelupyynnön tuloksen näyttävä sivu voisi olla \texttt{/pages/Welcome.jsp} ja lomaketarkistuksen hoitava \texttt{ActionForm}-toiminto tottelisi nimeä \texttt{logonForm}.
 
+\newpage
 \subsection{Esimerkkisovelluksen luokkakaavio}
-Lomaketarkistuksia varten on Struts Action -kehyksessä \texttt{DynaValidatorForm}-luokka , josta periyttämällä on saatu MailReader-sovelluksen lomaketarkistusten kantaluokka; \texttt{BaseForm}. \texttt{DynaValidatorForm} on \texttt{ActionForm}-luokan aliluokka.
-
-
-Varsinaista kuvan esittämistä havainnollistaa kuva~\ref{luokkakaavio}.
-Huomiota on kiinnitettävä kuvan osien ja tekstimerkintöjen näkyvyyteen,
-kuvan numerointiin ja otsikointiin. 
+Kuvassa~\ref{luokkakaavio} on esitetty miten \texttt{MailReader}-sovellus on johdettu Struts Action -kehyksestä. Kaikkia sovelluksen luokkia ei ole merkitty kaavioon. Katkoviiva tarkoittaa käyttö- tai riippuvuussuhdetta, ja periytyminen on merkitty kiinteällä viivalla.
 
 \begin{figure}[h]
-%\begin{figure}[tbh] t= top, b = bottom, h=here
-\ \newline
+%\ \newline
 \begin{center}
-%\includegraphics[width=0.9\textwidth]{luokkakaavio.pdf}
-%\rotatebox{90}{\includegraphics[scale=.75]{kuvaesimerkki.pdf}}
-%\includegraphics[scale=.250]{luokkakaavio.pdf}
-%\includegraphics[scale=.68]{luokkakaavio.png}
-\includegraphics[scale=.68]{luokkakaavio.jpeg}
-\caption{Kuvan elementit.}
+\includegraphics[scale=.70]{luokkakaavio.jpeg}
+\caption{MailReader-sovelluksen keskeisiä luokkia.}
 \label{luokkakaavio}
 \end{center}
 \end{figure}
 
+Lomaketarkistuksia varten on Struts Action -kehyksessä \texttt{DynaValidatorForm}-luokka, josta periyttämällä on saatu MailReader-sovelluksen lomaketarkistusten kantaluokka; \texttt{BaseForm}. \texttt{DynaValidatorForm} on \texttt{ActionForm}-luokan aliluokka. \texttt{BaseForm} ja siitä periytetyt \texttt{LogonForm}, \texttt{RegistrationForm} ja \texttt{SubscriptionForm} -luokat määritellään \texttt{struts-config.xml}-tiedostossa. 
+
+\texttt{MailReader}-sovelluksen toimintojen kantaluokka \texttt{BaseAction}:ista on periytetty luokat \texttt{LocaleAction}, \texttt{LogOffAction}, \texttt{LogOnAction}, \texttt{MainMenuAction} ja \texttt{WelcomeAction}. Toiminnan keskiössä on \texttt{ActionServlet}-luokka, joka ohjaa kontrollin kulkua sovelluksessa.
 
 \subsection{MailReader-ohjelman toiminta sisäänkirjautumisen yhteydessä}
-% ja lyhyt sanallinen selostus
+Kuvasa~\ref{sekvenssikaavio} on esitetty kontrollin siirtyminen sisäänkirjautumisen yhteydessä. 
 
-%==============================================================================
+\begin{figure}[h]
+%\ \newline
+\begin{center}
+\includegraphics[scale=.62]{sekvenssi.jpeg}
+\caption{Sisäänkirjautumiseen liittyvä kontrollin siirtyminen eri komponenttien välillä.}
+\label{sekvenssikaavio}
+\end{center}
+\end{figure}
 
-%% Esimerkkisovelluksena strutsin lähdekoodidistribuution mukanan tuleva MailReader-ohjelma
-%Kehyksen ja siitä johdettavan tyypillisen sovelluksen keskeiset luokat ja muut käsitteet
-%esitetään luokkakaaviona. Kaavioon merkitään stereotyypeillä, mitkä osat arkkitehtuurista
-%kuuluvat kehyksen puolelle ja mitkä osat puolestaan ovat sovelluskohtaisia. Myös
-%MailReader-ohjelman käyttöliittymäosuus (JSP-tiedostot) ja sovelluksen konfigurointi (struts-
-%config.xml-tiedosto WEB-INF-hakemistossa) kuvataan pääpiirteissään luokkakaaviossa.
-%Mukaan kannattaa kuitenkin ottaa vain keskeisimmät JSP- ja XML-tiedostojen tagit
-%esimerkinomaisesti esimerkiksi stereotyypitettyinä luokkasymboleina. Vastaavasti kaavioon
-%kannattaa ottaa mukaan ainoastaan sovelluksen tekijän kannalta kiinnostavat kehyksen luokat
-%ja esimerkkisovelluksen luokista yksi tai muutama edustaja kutakin (ali)luokkaryhmää kohti.
-%Luokkakaavion lisäksi laaditaan sekvenssikaavio, joka havainnollistaa MailReader-ohjelman
-%toimintaa käyttäjän sisäänkirjautumisen yhteydessä (logon.jsp, LogonAction, LogonForm,
-%DynaValidatorForm ja niin edelleen). Kumpaankin kaavioon liitetään myös lyhyt sanallinen
-%selostus.
+\begin{itemize}
 
 
-%3.Struts Action-kehyksen avulla toteutetun sovelluksen arviointi=========================================
+\end{itemize}
+
+
 \newpage
 \section{Struts Action -kehyksen avulla toteutetun sovelluksen arkkitehtuurin arviointi soveltamalla ATAM-menetelmän analyysiosiota}
 %%%%%%%%\section{Apache Struts Action -kehyksellä toteutetun sovelluksen (MailReader) arkkitehtuurin arviointi}
