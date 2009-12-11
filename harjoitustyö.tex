@@ -121,7 +121,56 @@ Käyttäjä syöttää käyttäjätunnuksen ja salasanan, ja lähettää lomakkeen eteenpäin
 \texttt{execute}-metodi katsoo täsmääkö käyttäjätunnus annettuun salasanaan. Jos käyttäjän tunnistautuminen onnistui, palautetaan \texttt{ActionForward}-oliossa tieto uudelleenohjauksesta \texttt{MainMenu}-polkuun liittyvään komponenttiin, joka taas ohjaa käyttäjän \texttt{MainMenu.jsp}-sivulle.
 
 \newpage
-\section{Struts Action -kehyksen avulla toteutetun sovelluksen arkkitehtuurin arviointi soveltamalla ATAM-menetelmän analyysiosiota}
+\section{Struts Action -kehyksen avulla toteutetun sovelluksen arkkitehtuurin arviointi}
+Tässä kappaleessa arvioidaan Struts Action-kehyksen mukana toimitetun MailReader-esimerkkisovelluksen arkkitehtuuria käyttäen ATAM-menetelmää.
+
+\subsection{Olennaiset arkkitehtuuriratkaisut}
+MailReader-sovelluksen toteutus Struts Action-kehyksestä soveltamalla on selvästi suurin sovelluksen arkkitehtuuriin vaikuttava ratkaisu. Struts Action-kehyksestä johtuen sovelluksen arkkitehtuurityyli on sovellettu malli-näkymä-ohjain. Kyseinen arkkitehtuurityyli erottaa tehokkaasti käyttöliittymän liiketoimintalogiikasta. Koska käyttäjätietokanta on toteutettu liiketoimintalogiikasta erillisenä, sovelluksen voidaan katsoa toteuttavan myös kerrosarkkitehtuuria.
+
+\subsubsection{Sovelluskehyksen käyttö}
+Struts Action-sovelluskehyksen käyttö nopeuttaa sovelluksen kehitystä ja tarjoaa valmiin arkkitehtuurityylin. Ohjelmistokehyksen pakottaman arkkitehtuurityylin kautta saavutetaan uudelleenkäytettävyyttä, koska mallin tai käyttöliittymän vaihtaminen ei vaadi muutostöitä sovelluksen muihin osiin. Sovelluskehyksen käyttö luultavasti heikentää suorituskykyä.
+
+\subsubsection{Malli-näkymä-ohjain arkkitehtuurityyli}
+Sovelluskehyksen mukanaan tuoma arkkitehtuurityyli eristää käyttöliittymän, liiketoimintalogiikan ja niiden välillä kontrollia siirtelevän ohjaimen. Suurimpana etuna tästä on että ovelluksen eri osien toteutusta voi muuttaa ilman että se vaikuttaa muiden osien toimintaan.
+
+\subsubsection{Kerrosarkkitehtuuri}
+Liiketoimintalogiikan alta löytyvä tietokantakerros voidaan helposti vaihtaa käyttämään relaatiotietokantaa, koska se on erillään liiketoimintalogiikasta omassa kerroksessaan. Myös käyttöliittymä on omassa kerroksessaan mutta se on seurausta käytetystä sovelluskehyksestä.
+
+\subsection{Laatupuu}
+
+
+%Struts Action -kehyksestä johdetun MailReader-sovelluksen arkkit
+
+
+%% Sovelletaan ATAM-menetelmän analyysiosiota.
+
+%% laatuatribuutteja:
+% saatavuus, luotettavuus, muunneltavuus, uudelleenkäytettävyys, suorituskyky
+%% Analyysiosiossa etsitään laatuatribuutteihin vaikuttavat arkkitehtuuriratkaisut
+
+
+% valitse yksi, jaa alikohtiin, sijoita laatupuuhun
+
+% valittuun näkökohtaan liittyen, laaditaan 6 MailReader-ohjelman skenaariota
+% jotka painotetaan tärkeyden ja toteutuksen vaikeuden suhteen
+
+%laatupuun ja skenaarioiden perusteella tyypillisen struts-sovelluksen 
+% kyseiseen laatuatribuuttiin liittyvät keskeiset riskit
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+%%soveltamalla ATAM-menetelmän analyysiosiota}
 %%%%%%%%\section{Apache Struts Action -kehyksellä toteutetun sovelluksen (MailReader) arkkitehtuurin arviointi}
 %% arviointi soveltamalla ATAM-menetelmän analyysiosiota
 %%%%%%%\subsection{Laatuatribuutit}
