@@ -114,12 +114,11 @@ Kuvasa~\ref{sekvenssikaavio} on esitetty kontrollin siirtyminen sisäänkirjautumi
 \label{sekvenssikaavio}
 \end{center}
 \end{figure}
+Käyttäjän klikattua login-linkkiä etusivulla, saa sovelluksen ohjain(\texttt{ActionServlet}) palveltavakseen palvelupyynnön, jota vastaavaksi tulossivuksi on määritelty \\ \texttt{struts-config.xml}-tiedostossa \texttt{Logon.jsp}. 
 
-\begin{itemize}
+Käyttäjä syöttää käyttäjätunnuksen ja salasanan, ja lähettää lomakkeen eteenpäin. \texttt{submitLogon}-polkuun liittyvä palvelypyyntö suoritetaan validoimalla käyttäjän lähettämä lomake dynaamisesti generoidulla \texttt{LogonForm}-pavulla. Jos validointi onnistui, ohjain kutsuu \texttt{submitLogon}-polkuun konfiguraatiotiedostossa liitetyn \texttt{LogonAction}-toiminnon \texttt{execute}-metodia. 
 
-
-\end{itemize}
-
+\texttt{execute}-metodi katsoo täsmääkö käyttäjätunnus annettuun salasanaan. Jos käyttäjän tunnistautuminen onnistui, palautetaan \texttt{ActionForward}-oliossa tieto uudelleenohjauksesta \texttt{MainMenu}-polkuun liittyvään komponenttiin, joka taas ohjaa käyttäjän \texttt{MainMenu.jsp}-sivulle.
 
 \newpage
 \section{Struts Action -kehyksen avulla toteutetun sovelluksen arkkitehtuurin arviointi soveltamalla ATAM-menetelmän analyysiosiota}
